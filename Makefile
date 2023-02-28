@@ -8,7 +8,7 @@
 NAME = wolfram
 
 all :
-	@stack build
+	@stack build --copy-bins
 
 clean:
 	@stack clean
