@@ -34,4 +34,4 @@ main = do
         let move = getMove args
         if (errorHandlingValues rule window start lines) == False then exitWith (ExitFailure 84) else do
             let binary = (reverse (addZero (reverse (intToBin rule))))
-            myLoop args binary leftList rightList 0
+            myLoop (window, start, lines, move) binary leftList rightList 0

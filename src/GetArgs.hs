@@ -13,7 +13,8 @@ getRule (i:j:args) = if i == "--rule" then read j :: Int else getRule args
 
 getWindow :: [String] -> Int
 getWindow [] = 80
-getWindow (i:j:args) = if i == "--window" then read j :: Int else getWindow args
+getWindow (i:j:args) = 
+    if i == "--window" then read j :: Int else getWindow args
 
 getStart :: [String] -> Int
 getStart [] = 0

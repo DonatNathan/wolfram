@@ -9,13 +9,13 @@ module Algorythm where
 
 import Display
 
-myLoop :: [String] -> [Char] -> [Char] -> [Char] -> Integer -> IO ()
-myLoop (args) (binary) (leftList) (rightList) 20 = putStr ""
-myLoop (args) (binary) (leftList) (rightList) line = do
-    displayLine leftList rightList
-    let newLeft = createNewLeft binary leftList rightList
-    let newRight = createNewRight binary leftList rightList
-    myLoop args binary newLeft newRight (line + 1)
+myLoop :: (Int, Int, Int, Int) -> [Char] -> [Char] -> [Char] -> Int -> IO ()
+myLoop (window, start, lines, move) (binary) (leftList) (rightList) line = do
+    if line == lines then putStr "" else do
+        displayLine leftList rightList line (window, start, move)
+        let newLeft = createNewLeft binary leftList rightList
+        let newRight = createNewRight binary leftList rightList
+        myLoop (window, start, lines, move) binary newLeft newRight (line + 1)
 
 createNewLeft :: [Char] -> [Char] -> [Char] -> [Char]
 createNewLeft (binary) [] (rightList) = []
