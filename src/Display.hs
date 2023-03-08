@@ -1,9 +1,9 @@
---
+{-
 -- EPITECH PROJECT, 2023
 -- B-FUN-400-LYN-4-1-wolfram-nathan.donat-filliod
 -- File description:
 -- Display
---
+-}
 
 module Display where 
 

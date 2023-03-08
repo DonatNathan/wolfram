@@ -9,16 +9,11 @@ module Main (main) where
 
 import ErrorHandling
 import GetArgs
-import Display
 import BinaryName
 import Algorythm
 
 import System.Environment
 import System.Exit
-
--- ADD RIGHT STRING FUNCTION
--- addInList :: Char -> [Char] -> [Char]
--- addInList char (list) = (list) ++ [char]
 
 main :: IO ()
 main = do
