@@ -9,7 +9,7 @@ module ErrorHandling where
 
 isNumber :: [Char] -> Bool
 isNumber [] = True
-isNumber (i:str) = if i > '9' || i < '0' then False else isNumber str
+isNumber (i:str) = if (i > '9' || i < '0') && i /= '-' then False else isNumber str
 
 errorHandlingRule :: Int -> Bool
 errorHandlingRule i = if i < 0 || i > 255 then False else True
