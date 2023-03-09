@@ -7,6 +7,20 @@
 
 module Display where 
 
+displayString :: [Char] -> Int -> IO ()
+displayString [] number = putStr ""
+displayString (string) number | number <= 0 = putStr ""
+displayString (i:string) number = do
+    putChar i
+    displayString string (number - 1)
+
+displayReverseString :: [Char] -> Int -> Int -> IO ()
+displayReverseString [] number len = putStr ""
+displayReverseString (i:string) number len | number >= len = do
+    putChar i
+    displayReverseString string (number - 1) (len - 1)
+displayReverseString (i:string) number len | number < len = displayReverseString string (number) (len - 1)
+
 displayVoid :: Int -> IO ()
 displayVoid number | number <= 0 = putStr ""
 displayVoid number = do
@@ -15,11 +29,14 @@ displayVoid number = do
 
 displayLine :: [Char] -> [Char] -> Int -> (Int, Int, Int) -> IO ()
 displayLine (leftList) (rightList) line (window, start, move) = if line < start then putStr "" else do
-    displayVoid (window `div` 2 - (line * 2) `div` 2 + move)
-    mapM_ putChar (reverse leftList)
-    mapM_ putChar rightList
-    if window `mod` 2 == 0 then 
-        displayVoid (window `div` 2 - (line * 2) `div` 2 - 1)
+    displayVoid (window `div` 2 - line + move)
+    displayReverseString (reverse leftList) (window `div` 2) (length leftList)
+    -- displayString (reverse leftList) (window `div` 2)
+    displayString rightList (window `div` 2)
+    -- mapM_ putChar (reverse leftList)
+    -- mapM_ putChar rightList
+    if window `mod` 2 == 0 then
+        displayVoid (window `div` 2 - line - 1)
     else
-        displayVoid (window `div` 2 - (line * 2) `div` 2)
+        displayVoid (window `div` 2 - line)
     putChar '\n'
