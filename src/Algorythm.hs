@@ -11,11 +11,15 @@ import Display
 
 myLoop :: (Int, Int, Int, Int) -> [Char] -> [Char] -> [Char] -> Int -> IO ()
 myLoop (window, start, lines, move) (binary) (leftList) (rightList) line = do
-    if line - start == lines then putStr "" else do
+    if line - start == lines then return () else do
         displayLine leftList rightList line (window, start, move)
         let newLeft = createNewLeft binary leftList rightList True
         let newRight = createNewRight binary leftList rightList True
         myLoop (window, start, lines, move) binary newLeft newRight (line + 1)
+
+-- RULE 30 PAIR MOVE 1 : 1 character de trop
+-- Sequence
+-- Data.Bits
 
 -- Change all rightList and leftList by l:rightList and j:leftList
 
