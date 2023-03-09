@@ -11,7 +11,7 @@ import Display
 
 myLoop :: (Int, Int, Int, Int) -> [Char] -> [Char] -> [Char] -> Int -> IO ()
 myLoop (window, start, lines, move) (binary) (leftList) (rightList) line = do
-    if line == lines then putStr "" else do
+    if line - start == lines then putStr "" else do
         displayLine leftList rightList line (window, start, move)
         let newLeft = createNewLeft binary leftList rightList True
         let newRight = createNewRight binary leftList rightList True
