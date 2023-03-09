@@ -30,5 +30,6 @@ errorHandlingValues rule window start lines = if (errorHandlingRule rule) &&
 
 errorHandling :: [String] -> [String] -> Bool
 errorHandling [] (list) = True
+errorHandling (i:args) (list) | args == [] = False
 errorHandling (i:j:args) (list) = if (i `elem` list) && 
     isNumber j then errorHandling args list else False
