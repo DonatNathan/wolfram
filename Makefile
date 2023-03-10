@@ -16,6 +16,7 @@ clean:
 
 fclean:
 	@stack purge
+	@rm wolfram
 	@echo 'Program purged'
 
 re : fclean all
@@ -23,7 +24,8 @@ re : fclean all
 run : 
 	@stack exec wolfram
 
-tests_run: all
-	@stack test
+tests_run:
+	@stack clean
+	@stack test --coverage
 
 .PHONY: re run fclean clean all

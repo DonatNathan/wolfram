@@ -9,24 +9,25 @@ module ErrorHandling where
 
 isNumber :: [Char] -> Bool
 isNumber [] = True
-isNumber (i:str) = if (i > '9' || i < '0') && i /= '-' then False else isNumber str
+isNumber (i:str) =
+    if (i > '9' || i < '0') && i /= '-' then False else isNumber str
 
 errorHandlingRule :: Int -> Bool
-errorHandlingRule i = if i < 0 || i > 255 then False else True
+errorHandlingRule i = i >= 0 && i <= 255
 
 errorHandlingWindow :: Int -> Bool
-errorHandlingWindow i = if i < 0 then False else True
+errorHandlingWindow i = i >= 0
 
 errorHandlingStart :: Int -> Bool
-errorHandlingStart i = if i < 0 then False else True
+errorHandlingStart i = i >= 0
 
 errorHandlingLines :: Int -> Bool
-errorHandlingLines i = if i < -1 then False else True
+errorHandlingLines i = i >= -1
 
 errorHandlingValues :: Int -> Int -> Int -> Int -> Bool
-errorHandlingValues rule window start lines = if (errorHandlingRule rule) &&
+errorHandlingValues rule window start lines = (errorHandlingRule rule) &&
     (errorHandlingWindow window) && (errorHandlingStart start) && 
-    (errorHandlingLines lines) then True else False
+    (errorHandlingLines lines)
 
 errorHandling :: [String] -> [String] -> Bool
 errorHandling [] (list) = True

@@ -13,4 +13,5 @@ intToBin a | a `mod` 2 == 1 = intToBin (a `div` 2) ++ ['*']
            | a `mod` 2 == 0 = intToBin (a `div` 2) ++ [' ']
 
 addZero :: [Char] -> [Char]
-addZero (list) = if (length list) < 8 then (addZero ((list) ++ [' '])) else (list)
+addZero (list) = 
+    if (length list) < 8 then (addZero ((list) ++ [' '])) else (list)
