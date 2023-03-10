@@ -3,14 +3,7 @@
 # For more information, please see the documentation at:
 #   https://docs.haskellstack.org/en/stable/lock_files
 
-packages:
-- completed:
-    hackage: test-framework-hunit-0.3.0.2@sha256:7fd007e9cb082cd64a2213a6d36acf057f7d6df6b5343a088e81b2b3a9a23545,1487
-    pantry-tree:
-      sha256: 355897b03e0320296f207350f8c8aba4071b673021aef726bac27e3ad0bbb2cc
-      size: 239
-  original:
-    hackage: test-framework-hunit-0.3.0.2
+packages: []
 snapshots:
 - completed:
     sha256: adbc602422dde10cc330175da7de8609e70afc41449a7e2d6e8b1827aa0e5008
