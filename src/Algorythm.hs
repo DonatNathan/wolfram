@@ -12,11 +12,11 @@ import Display
 myLoop :: (Int, Int, Int, Int) -> [Char] -> [Char] -> [Char] -> Int -> IO ()
 myLoop (window, start, lines, move) (binary) (leftList) (rightList)
     line | line - start == lines = return ()
-    | line - start /= lines = do
-        displayLine leftList rightList line (window, start, move)
-        let newLeft = createNewLeft binary leftList rightList True
-        let newRight = createNewRight binary leftList rightList True
-        myLoop (window, start, lines, move) binary newLeft newRight (line + 1)
+    | line - start /= lines =
+        displayLine leftList rightList line (window, start, move) >>
+        let newL = createNewLeft binary leftList rightList True
+            newRight = createNewRight binary leftList rightList True
+        in myLoop (window, start, lines, move) binary newL newRight (line + 1)
 
 createNewLeft :: [Char] -> [Char] -> [Char] -> Bool -> [Char]
 createNewLeft (binary) [] [] first = []

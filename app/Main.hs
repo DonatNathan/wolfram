@@ -18,9 +18,9 @@ import System.Exit
 startW :: Int -> Int -> Int -> Int -> Int -> [Char] -> [Char] -> IO ()
 startW rule window start lines move leftList rightList = 
     if (errorHandlingValues rule window start lines) == False
-    then exitWith (ExitFailure 84) else do
+    then exitWith (ExitFailure 84) else
         let binary = (reverse (addZero (reverse (intToBin rule))))
-        myLoop (window, start, lines, move) binary leftList rightList 0
+        in myLoop (window, start, lines, move) binary leftList rightList 0
 
 main :: IO ()
 main = do
