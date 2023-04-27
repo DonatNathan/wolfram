@@ -11,18 +11,18 @@ getRule :: [String] -> Int
 getRule [] = -84
 getRule (i:j:args) = if i == "--rule" then read j :: Int else getRule args
 
-getWindow :: [String] -> Int
-getWindow [] = 80
-getWindow (i:j:args) = 
-    if i == "--window" then read j :: Int else getWindow args
+getW :: [String] -> Int
+getW [] = 80
+getW (i:j:args) = 
+    if i == "--window" then read j :: Int else getW args
 
 getStart :: [String] -> Int
 getStart [] = 0
 getStart (i:j:args) = if i == "--start" then read j :: Int else getStart args
 
-getLines :: [String] -> Int
-getLines [] = -1
-getLines (i:j:args) = if i == "--lines" then read j :: Int else getLines args
+getL :: [String] -> Int
+getL [] = -1
+getL (i:j:args) = if i == "--lines" then read j :: Int else getL args
 
 getMove :: [String] -> Int
 getMove [] = 0

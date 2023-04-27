@@ -15,8 +15,8 @@ import Algorythm
 import System.Environment
 import System.Exit
 
-startWolfram :: Int -> Int -> Int -> Int -> Int -> [Char] -> [Char] -> IO ()
-startWolfram rule window start lines move leftList rightList = 
+startW :: Int -> Int -> Int -> Int -> Int -> [Char] -> [Char] -> IO ()
+startW rule window start lines move leftList rightList = 
     if (errorHandlingValues rule window start lines) == False
     then exitWith (ExitFailure 84) else do
         let binary = (reverse (addZero (reverse (intToBin rule))))
@@ -25,6 +25,6 @@ startWolfram rule window start lines move leftList rightList =
 main :: IO ()
 main = do
     let list = ["--rule", "--window", "--move", "--start", "--lines"]
-    args <- getArgs :: IO [String]
-    if (errorHandling args list) == False then exitWith (ExitFailure 84) else
-        startWolfram (getRule args) (getWindow args) (getStart args) (getLines args) (getMove args) [] ['*']
+    a <- getArgs :: IO [String]
+    if (errorHandling a list) == False then exitWith (ExitFailure 84)
+    else startW (getRule a) (getW a) (getStart a) (getL a) (getMove a) [] ['*']

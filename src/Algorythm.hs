@@ -20,48 +20,48 @@ myLoop (window, start, lines, move) (binary) (leftList) (rightList)
 
 createNewLeft :: [Char] -> [Char] -> [Char] -> Bool -> [Char]
 createNewLeft (binary) [] [] first = []
-createNewLeft (binary) [] (k:rightList) first | first == True = 
+createNewLeft (binary) [] (k:rightList) True =
     [setValue ' ' ' ' k binary 0] ++ (createNewLeft binary [] [] False)
-createNewLeft (binary) [] (k:rightList) first | first == False = []
-createNewLeft (binary) (i:leftList) (k:rightList) first | first == True && 
-    leftList == [] = [setValue ' ' i k binary 0] ++ 
+createNewLeft (binary) [] (k:rightList) False = []
+createNewLeft (binary) (i:[]) (k:rightList) True =
+    [setValue ' ' i k binary 0] ++
     (createNewLeft binary [i] (rightList) False)
-createNewLeft (binary) (i:leftList) (k:rightList) first | first == False &&
-    leftList == [] = [setValue ' ' ' ' i binary 0] ++ 
+createNewLeft (binary) (i:[]) (k:rightList) False =
+    [setValue ' ' ' ' i binary 0] ++
     (createNewLeft binary [] (rightList) False)
-createNewLeft (binary) (i:j:leftList) (k:rightList) first | first == True = 
-    [setValue j i k binary 0] ++ 
+createNewLeft (binary) (i:j:leftList) (k:rightList) True =
+    [setValue j i k binary 0] ++
     (createNewLeft binary (i:j:leftList) rightList False)
-createNewLeft (binary) (i:j:leftList) (rightList) first | first == False &&
-    leftList == [] = [setValue ' ' j i binary 0] ++ 
-    (createNewLeft binary (j:leftList) rightList False)
-createNewLeft (binary) (i:j:leftList) (rightList) first | first == False &&
-    leftList /= [] = [setValue (head leftList) j i binary 0] ++ 
+createNewLeft (binary) (i:j:[]) (rightList) False =
+    [setValue ' ' j i binary 0] ++
+    (createNewLeft binary (j:[]) rightList False)
+createNewLeft (binary) (i:j:leftList) (rightList) False =
+    [setValue (head leftList) j i binary 0] ++
     (createNewLeft binary (j:leftList) rightList False)
 
 createNewRight :: [Char] -> [Char] -> [Char] -> Bool -> [Char]
 createNewRight (binary) [] [] first = []
 createNewRight (binary) (leftList) [] first = []
-createNewRight (binary) [] (k:rightList) first | rightList == [] && 
-    first == True = [setValue ' ' k ' ' binary 0] ++ 
+createNewRight (binary) [] (k:[]) True =
+    [setValue ' ' k ' ' binary 0] ++
     (createNewRight binary [] [k] False)
-createNewRight (binary) (leftList) (k:rightList) first | rightList == [] &&
-    first == False = [setValue k ' ' ' ' binary 0] ++ 
+createNewRight (binary) (leftList) (k:[]) False =
+    [setValue k ' ' ' ' binary 0] ++
     (createNewRight binary (leftList) [] False)
-createNewRight (binary) (i:leftList) (k:l:rightList) first | rightList == [] &&
-    first == True = [setValue i k l binary 0] ++ 
+createNewRight (binary) (i:leftList) (k:l:[]) True =
+    [setValue i k l binary 0] ++
     (createNewRight binary [] [k, l] False)
-createNewRight (binary) (leftList) (k:l:rightList) first | rightList == [] && 
-    first == False = [setValue k l ' ' binary 0] ++ 
+createNewRight (binary) (leftList) (k:l:[]) False =
+    [setValue k l ' ' binary 0] ++
     (createNewRight binary (leftList) [l] False)
-createNewRight (binary) (i:leftList) (k:l:rightList) first | first == True = 
-    [setValue i k l binary 0] ++ 
+createNewRight (binary) (i:leftList) (k:l:rightList) True =
+    [setValue i k l binary 0] ++
     (createNewRight binary leftList (k:l:rightList) False)
-createNewRight (binary) (leftList) (k:l:rightList) first | first == False && 
-    rightList == [] = [setValue k l ' ' binary 0] ++ 
-    (createNewRight binary leftList (l:rightList) False)
-createNewRight (binary) (leftList) (k:l:rightList) first | first == False && 
-    rightList /= [] = [setValue k l (head rightList) binary 0] ++ 
+createNewRight (binary) (leftList) (k:l:[]) False =
+    [setValue k l ' ' binary 0] ++
+    (createNewRight binary leftList (l:[]) False)
+createNewRight (binary) (leftList) (k:l:rightList) False =
+    [setValue k l (head rightList) binary 0] ++
     (createNewRight binary leftList (l:rightList) False)
 
 setValue :: Char -> Char -> Char -> [Char] -> Int -> Char

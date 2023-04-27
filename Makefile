@@ -16,12 +16,12 @@ clean:
 
 fclean:
 	@stack purge
-	@rm wolfram
+	@rm ${NAME}
 	@echo 'Program purged'
 
 re : fclean all
 
-run : 
+run :
 	@stack exec wolfram
 
 tests_run:
