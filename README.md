@@ -3,7 +3,7 @@
 ## Description 
 
 Second year Epitech project.\
-Do not copy this project if you are an Epitech student !
+Do not copy this project if you are an Epitech student !\
 The goal of this project is to implement the Wolfram algorythm in Haskell language.
 
 ## Grades 
